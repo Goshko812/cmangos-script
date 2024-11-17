@@ -51,7 +51,7 @@ copy_configs() {
 install_databases() {
     cd ~/cmangos/classic-db || exit
     yes 9 | head -n 1 | ./InstallFullDB.sh
-    sed -i 's|CORE_PATH=.*|CORE_PATH="~/cmangos/mangos"|' InstallFullDB.config
+    sed -i 's|CORE_PATH=.*|CORE_PATH="$HOME/cmangos/mangos"|' InstallFullDB.config
     sed -i 's|AHBOT=.*|AHBOT="YES"|' InstallFullDB.config
     sed -i 's|PLAYERBOTS_DB=.*|PLAYERBOTS_DB="YES"|' InstallFullDB.config
     sed -i 's|MYSQL_PASSWORD=.*|MYSQL_PASSWORD="mangos"|' InstallFullDB.config
