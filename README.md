@@ -51,9 +51,13 @@ It does not include any additional configurations for custom settings or modific
 
 ## Acknowledgements
 [davidonete](https://github.com/davidonete) for his docker script that inspired this one
+
 [Celguar](https://github.com/cmangos/playerbots) for the new playerbots module
+
 [ike3](https://github.com/ike3) for the original playerbots module
+
 [CMangos](https://github.com/cmangos) for their open-source project.
+
 [CMake](https://cmake.org/) for the build system.
 
 Feel free to modify any sections to better suit your project
