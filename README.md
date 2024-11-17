@@ -49,9 +49,6 @@ This script is specifically designed for Ubuntu 22.04. Running it on other opera
 The script does not handle the creation of game accounts; you will need to do this manually after the installation.
 It does not include any additional configurations for custom settings or modifications to the game.
 
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## Acknowledgements
 [davidonete](https://github.com/davidonete) for his docker script that inspired this one
 [Celguar](https://github.com/cmangos/playerbots) for the new playerbots module
