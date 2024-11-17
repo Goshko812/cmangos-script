@@ -62,7 +62,7 @@ change_realmlist_ip() {
     read -p "Do you want to change the realmlist IP? (y/n): " answer
     if [[ "$answer" == "y" ]]; then
         read -p "Enter your public or LAN IP: " ip_address
-        mysql -u root -p -e "USE classicrealmd; UPDATE realmlist SET address = '$ip_address' WHERE id = 1;"
+        sudo mysql -u root -p -e "USE classicrealmd; UPDATE realmlist SET address = '$ip_address' WHERE id = 1;"
     fi
 }
 
