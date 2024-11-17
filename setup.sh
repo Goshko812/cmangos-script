@@ -29,9 +29,6 @@ create_directories() {
 
 clone_repositories() {
     git clone https://github.com/cmangos/mangos-classic.git mangos
-    cd mangos || exit
-    git clone https://github.com/cmangos/playerbots
-    cd ..
     git clone https://github.com/cmangos/classic-db.git
 }
 
@@ -48,7 +45,7 @@ copy_configs() {
     cp realmd.conf.dist realmd.conf
     cp ~/cmangos/mangos/src/game/AuctionHouseBot/ahbot.conf.dist.in ahbot.conf
     cp anticheat.conf.dist anticheat.conf
-    cp ~/cmangos/mangos/src/modules/PlayerBots/playerbot/aiplayerbot.conf.dist.in aiplayerbot.conf
+    cp aiplayerbot.conf.dist aiplayerbot.conf
 }
 
 install_databases() {
