@@ -18,7 +18,7 @@ install_dependencies() {
     sudo apt update
     sudo apt install -y build-essential git-core autoconf make patch libmysql++-dev mysql-server libtool libssl-dev grep binutils zlib1g-dev libbz2-dev cmake libboost-all-dev
     sudo apt install -y g++-12
-    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 12 --slave /usr/bin/g++ g++ /usr/bin/g++-12
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 12 --slave /usr/bin/g++ g++ /usr/bin/g++-12
 }
 
 create_directories() {
@@ -55,7 +55,7 @@ install_databases() {
     sed -i 's|AHBOT=.*|AHBOT="YES"|' InstallFullDB.config
     sed -i 's|PLAYERBOTS_DB=.*|PLAYERBOTS_DB="YES"|' InstallFullDB.config
     sed -i 's|MYSQL_PASSWORD=.*|MYSQL_PASSWORD="mangos"|' InstallFullDB.config
-    ./InstallFullDB.sh
+    sudo ./InstallFullDB.sh
 }
 
 change_realmlist_ip() {
@@ -73,7 +73,7 @@ Description=Realmd Service
 [Service]
 ExecStart=$HOME/cmangos/run/bin/realmd
 WorkingDirectory=$HOME/cmangos/run/bin
-User =root
+User =$USER
 Restart=always
 
 [Install]
@@ -85,7 +85,7 @@ Description=Mangosd Service
 [Service]
 ExecStart=$HOME/cmangos/run/bin/mangosd
 WorkingDirectory=$HOME/cmangos/run/bin
-User =root
+User =$USER
 Restart=always
 
 [Install]
