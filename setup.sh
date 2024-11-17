@@ -149,7 +149,6 @@ main() {
     setup_systemd_services
     extract_game_data
 
-    clear
     echo "CMangos setup completed successfully!
     Please remember to change Console.Enable line in your mangosd.conf file after creating an account to ensure the systemd service works properly:
     This setting must be updated to 0 to disable the console for the service to function correctly. Until then, you can keep the console enabled for account creation.
