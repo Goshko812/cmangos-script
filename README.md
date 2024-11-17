@@ -31,9 +31,9 @@ This script automates the installation and configuration of CMangos with playerb
    ```bash
    chmod +x setup_script.sh
    ```
-3. **Execute the Script**: Run the script with root privileges:
+3. **Execute the Script**: Run the script without root privileges:
    ```bash
-   sudo ./setup_script.sh
+   ./setup.sh
    ```
 **Follow the Prompts**: The script will guide you through the setup process. You will have the option to change the realmlist IP and extract the client data.
 
