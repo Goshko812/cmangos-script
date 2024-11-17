@@ -97,6 +97,45 @@ WantedBy=multi-user.target" | sudo tee /etc/systemd/system/mangosd.service
     sudo systemctl daemon-reload
 }
 
+extract_game_data() {
+    read -p "Do you want to extract game data from ~/client/? (y/n): " answer
+    if [[ "$answer" == "y" ]]; then
+        if [ -d ~/client/ ]; then
+            echo "Extracting game data from ~/client/..."
+            echo "Copying extractor files to your WoW client directory..."
+            cp ~/cmangos/run/bin/tools/* ~/client/
+
+            echo "Setting executable permissions on extraction scripts..."
+            chmod +x ~/client/ExtractResources.sh ~/client/MoveMapGen.sh
+
+            echo "Ensure the Data directory starts with an uppercase D in your WoW client directory."
+            echo "Running the data extraction..."
+            cd ~/client || exit
+            bash ./ExtractResources.sh
+
+            echo "Extraction complete! Moving extracted folders to ~/cmangos/run/bin..."
+            mv maps ~/cmangos/run/bin/
+            mv dbc ~/cmangos/run/bin/
+            mv vmaps ~/cmangos/run/bin/
+            if [ -d "mmaps" ]; then
+                mv mmaps ~/cmangos/run/bin/
+            fi
+            if [ -d "CreatureModels" ]; then
+                mv CreatureModels ~/cmangos/run/bin/
+            fi
+            if [ -d "Cameras" ]; then
+                mv Cameras ~/cmangos/run/bin/
+            fi
+
+            echo "If you didn't find the CreatureModels folder, don't worry, it's optional."
+        else
+            echo "Directory ~/client/ does not exist. Please ensure the game client is located there."
+        fi
+    else
+        echo "Skipping game data extraction."
+    fi
+}
+
 main() {
     check_root
     check_os
@@ -108,6 +147,7 @@ main() {
     install_databases
     change_realmlist_ip
     setup_systemd_services
+    extract_game_data
 
     clear
     echo "CMangos setup completed successfully!
