@@ -48,7 +48,7 @@ copy_configs() {
     cp realmd.conf.dist realmd.conf
     cp ~/cmangos/mangos/src/game/AuctionHouseBot/ahbot.conf.dist.in ahbot.conf
     cp anticheat.conf.dist anticheat.conf
-    cp aiplayerbot.conf.dist aiplayerbot.conf
+    cp ~/cmangos/mangos/src/modules/PlayerBots/playerbot/aiplayerbot.conf.dist.in aiplayerbot.conf
 }
 
 install_databases() {
