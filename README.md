@@ -4,7 +4,7 @@ This script automates the installation and configuration of CMangos with playerb
 
 ## What it does
 
-- **Checks for Root Privileges**: Ensures the script is run with root permissions.
+- **Checks for Root Privileges**: Ensures the script is not ran with root permissions.
 - **OS Verification**: Confirms that the script is being run on Ubuntu 22.04.
 - **Dependency Installation**: Automatically installs all necessary packages and dependencies required for CMangos.
 - **Directory Creation**: Sets up the necessary directory structure for CMangos.
