@@ -15,9 +15,9 @@ check_os() {
 }
 
 install_dependencies() {
-    apt update
-    apt install -y build-essential git-core autoconf make patch libmysql++-dev mysql-server libtool libssl-dev grep binutils zlib1g-dev libbz2-dev cmake libboost-all-dev
-    apt install -y g++-12
+    sudo apt update
+    sudo apt install -y build-essential git-core autoconf make patch libmysql++-dev mysql-server libtool libssl-dev grep binutils zlib1g-dev libbz2-dev cmake libboost-all-dev
+    sudo apt install -y g++-12
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 12 --slave /usr/bin/g++ g++ /usr/bin/g++-12
 }
 
