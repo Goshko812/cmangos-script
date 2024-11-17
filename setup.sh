@@ -1,8 +1,8 @@
 #!/bin/bash
 
 check_root() {
-    if [ "$(id -u)" -ne 0 ]; then
-        echo "This script must be run as root" 1>&2
+    if [ "$(id -u)" -eq 0 ]; then
+        echo "This script should not be run as root." 1>&2
         exit 1
     fi
 }
@@ -74,9 +74,9 @@ setup_systemd_services() {
 Description=Realmd Service
 
 [Service]
-ExecStart=/root/cmangos/run/bin/realmd
-WorkingDirectory=/root/cmangos/run/bin
-User  =root
+ExecStart=$HOME/cmangos/run/bin/realmd
+WorkingDirectory=$HOME/cmangos/run/bin
+User =root
 Restart=always
 
 [Install]
@@ -86,9 +86,9 @@ WantedBy=multi-user.target" | sudo tee /etc/systemd/system/realmd.service
 Description=Mangosd Service
 
 [Service]
-ExecStart=/root/cmangos/run/bin/mangosd
-WorkingDirectory=/root/cmangos/run/bin
-User  =root
+ExecStart=$HOME/cmangos/run/bin/mangosd
+WorkingDirectory=$HOME/cmangos/run/bin
+User =root
 Restart=always
 
 [Install]
