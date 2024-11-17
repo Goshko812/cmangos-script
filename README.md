@@ -14,6 +14,7 @@ This script automates the installation and configuration of CMangos with playerb
 - **Database Installation**: Sets up the MySQL database and configures it according to the user's specifications.
 - **Systemd Service Setup**: Creates systemd service files for managing the CMangos server processes.
 - **Realmlist IP Configuration**: Prompts the user to change the realmlist IP for connecting to the server.
+- **Extract files from the client**: Prompts the user to extract the data files from the client.
 
 ## Prerequisites
 
@@ -21,6 +22,7 @@ This script automates the installation and configuration of CMangos with playerb
 - Root access to the server.
 - An internet connection to download dependencies and repositories.
 - MySQL server should be installed and running.
+- Copy of the client in `~/client` (OPTIONAL)
 
 ## Usage
 
@@ -33,11 +35,9 @@ This script automates the installation and configuration of CMangos with playerb
    ```bash
    sudo ./setup_script.sh
    ```
-**Follow the Prompts**: The script will guide you through the setup process. You will have the option to change the realmlist IP.
+**Follow the Prompts**: The script will guide you through the setup process. You will have the option to change the realmlist IP and extract the client data.
 
 ## Important Notes
-Currently, the script does not support Client Data Extraction and that should be done manually using the tools provided in `~/cmangos/run/bin/tools/`
-
 After running the script, you will need to modify the `mangosd.conf` file to disable the console for the systemd service to function correctly. Look for the line `Console.Enable` and change its value to `0`.
 You can enable the services using the following commands after modifying the configuration:
    ```bash
