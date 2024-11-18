@@ -19,8 +19,7 @@ This script automates the installation and configuration of CMangos with playerb
 ## Prerequisites
 
 - Ubuntu 20.04-22.04, Debian or Arch Linux.
-- Root access to the server.
-- An internet connection to download dependencies and repositories.
+- Root access to the server and an internet connection to download dependencies and repositories.
 - MySQL server should be installed and running.
 - Copy of the client in `~/client` (OPTIONAL)
 
