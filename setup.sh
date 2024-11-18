@@ -94,10 +94,16 @@ install_databases() {
 }
 
 change_realmlist_ip() {
+    if [ "$version_choice" == "1" ]; then
+        db_name="classicrealmd"
+    elif [ "$version_choice" == "2" ]; then
+        db_name="tbcrealmd"
+    fi
+
     read -p "Do you want to change the realmlist IP? (y/n): " answer
     if [[ "$answer" == "y" ]]; then
         read -p "Enter your public or LAN IP: " ip_address
-        sudo mysql -u root -p -e "USE classicrealmd; UPDATE realmlist SET address = '$ip_address' WHERE id = 1;"
+        sudo mysql -u root -p -e "USE $db_name; UPDATE realmlist SET address = '$ip_address' WHERE id = 1;"
     fi
 }
 
