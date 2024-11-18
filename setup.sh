@@ -44,9 +44,9 @@ install_dependencies() {
 }
 
 create_directories() {
-    mkdir -p ~/cmangos/build
-    mkdir -p ~/cmangos/run/etc
-    cd ~/cmangos || exit
+    mkdir -p $HOME/cmangos/build
+    mkdir -p $HOME/cmangos/run/etc
+    cd $HOME/cmangos || exit
 }
 
 clone_repositories() {
@@ -55,23 +55,23 @@ clone_repositories() {
 }
 
 build_project() {
-    cd ~/cmangos/build || exit
-    cmake ../mangos -DCMAKE_INSTALL_PREFIX=~/cmangos/run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0 -DBUILD_PLAYERBOTS=ON -DBUILD_AHBOT=ON
+    cd $HOME/cmangos/build || exit
+    cmake ../mangos -DCMAKE_INSTALL_PREFIX=$HOME/cmangos/run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0 -DBUILD_PLAYERBOTS=ON -DBUILD_AHBOT=ON
     make -j$(nproc)
     make install
 }
 
 copy_configs() {
-    cd ~/cmangos/run/etc || exit
+    cd $HOME/cmangos/run/etc || exit
     cp mangosd.conf.dist mangosd.conf
     cp realmd.conf.dist realmd.conf
-    cp ~/cmangos/mangos/src/game/AuctionHouseBot/ahbot.conf.dist.in ahbot.conf
+    cp $HOME/cmangos/mangos/src/game/AuctionHouseBot/ahbot.conf.dist.in ahbot.conf
     cp anticheat.conf.dist anticheat.conf
     cp aiplayerbot.conf.dist aiplayerbot.conf
 }
 
 install_databases() {
-    cd ~/cmangos/classic-db || exit
+    cd $HOME/cmangos/classic-db || exit
     yes 9 | head -n 1 | ./InstallFullDB.sh
     sed -i 's|CORE_PATH=.*|CORE_PATH="$HOME/cmangos/mangos"|' InstallFullDB.config
     sed -i 's|AHBOT=.*|AHBOT="YES"|' InstallFullDB.config
@@ -117,38 +117,38 @@ WantedBy=multi-user.target" | sudo tee /etc/systemd/system/mangosd.service
 }
 
 extract_game_data() {
-    read -p "Do you want to extract game data from ~/client/? (y/n): " answer
+    read -p "Do you want to extract game data from $HOME/client/? (y/n): " answer
     if [[ "$answer" == "y" ]]; then
-        if [ -d ~/client/ ]; then
-            echo "Extracting game data from ~/client/..."
+        if [ -d $HOME/client/ ]; then
+            echo "Extracting game data from $HOME/client/..."
             echo "Copying extractor files to your WoW client directory..."
-            cp ~/cmangos/run/bin/tools/* ~/client/
+            cp $HOME/cmangos/run/bin/tools/* $HOME/client/
 
             echo "Setting executable permissions on extraction scripts..."
-            chmod +x ~/client/ExtractResources.sh ~/client/MoveMapGen.sh
+            chmod +x $HOME/client/ExtractResources.sh $HOME/client/MoveMapGen.sh
 
             echo "Ensure the Data directory starts with an uppercase D in your WoW client directory."
             echo "Running the data extraction..."
-            cd ~/client || exit
+            cd $HOME/client || exit
             bash ./ExtractResources.sh
 
-            echo "Extraction complete! Moving extracted folders to ~/cmangos/run/bin..."
-            mv maps ~/cmangos/run/bin/
-            mv dbc ~/cmangos/run/bin/
-            mv vmaps ~/cmangos/run/bin/
+            echo "Extraction complete! Moving extracted folders to $HOME/cmangos/run/bin..."
+            mv maps $HOME/cmangos/run/bin/
+            mv dbc $HOME/cmangos/run/bin/
+            mv vmaps $HOME/cmangos/run/bin/
             if [ -d "mmaps" ]; then
-                mv mmaps ~/cmangos/run/bin/
+                mv mmaps $HOME/cmangos/run/bin/
             fi
             if [ -d "CreatureModels" ]; then
-                mv CreatureModels ~/cmangos/run/bin/
+                mv CreatureModels $HOME/cmangos/run/bin/
             fi
             if [ -d "Cameras" ]; then
-                mv Cameras ~/cmangos/run/bin/
+                mv Cameras $HOME/cmangos/run/bin/
             fi
 
             echo "If you didn't find the CreatureModels folder, don't worry, it's optional."
         else
-            echo "Directory ~/client/ does not exist. Please ensure the game client is located there."
+            echo "Directory $HOME/client/ does not exist. Please ensure the game client is located there."
         fi
     else
         echo "Skipping game data extraction."
