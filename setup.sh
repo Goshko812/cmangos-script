@@ -57,10 +57,10 @@ create_directories() {
 clone_repositories() {
     if [[ "$version_choice" -eq 1 ]]; then
         git clone https://github.com/cmangos/mangos-classic.git mangos
-        git clone https://github.com/cmangos/classic-db.git
+        git clone https://github.com/cmangos/classic-db.git db
     elif [[ "$version_choice" -eq 2 ]]; then
         git clone https://github.com/cmangos/mangos-tbc.git mangos
-        git clone https://github.com/cmangos/tbc-db.git
+        git clone https://github.com/cmangos/tbc-db.git db
     else
         echo "Invalid version option. Please select a valid version."
         exit 1
@@ -84,9 +84,9 @@ copy_configs() {
 }
 
 install_databases() {
-    cd $HOME/cmangos/classic-db || exit
+    cd $HOME/cmangos/db || exit
     yes 9 | head -n 1 | ./InstallFullDB.sh
-    sed -i 's|CORE_PATH=.*|CORE_PATH="$HOME/cmangos/mangos"|' InstallFullDB.config
+    sed -i "s|CORE_PATH=.*|CORE_PATH=\"${HOME}/cmangos/mangos\"|" InstallFullDB.config
     sed -i 's|AHBOT=.*|AHBOT="YES"|' InstallFullDB.config
     sed -i 's|PLAYERBOTS_DB=.*|PLAYERBOTS_DB="YES"|' InstallFullDB.config
     sed -i 's|MYSQL_PASSWORD=.*|MYSQL_PASSWORD="mangos"|' InstallFullDB.config
