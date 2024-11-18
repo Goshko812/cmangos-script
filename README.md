@@ -6,7 +6,7 @@ This script automates the installation and configuration of CMangos with playerb
 
 - **Checks for Root Privileges**: Ensures the script is not ran with root permissions.
 - **OS Verification**: Prompts the user to select their OS.
-- **Dependency Installation**: Automatically installs all necessary packages and dependencies required for CMangos.
+- **Dependency Installation**: Prompts the user to chose an expansion and then automatically installs all necessary packages and dependencies required for CMangos.
 - **Directory Creation**: Sets up the necessary directory structure for CMangos.
 - **Repository Cloning**: Clones the CMangos core, playerbots, and classic database repositories from GitHub.
 - **Project Building**: Compiles the CMangos project using CMake and installs the binaries.
@@ -45,7 +45,6 @@ You can enable the services using the following commands after modifying the con
    sudo systemctl enable mangosd
    ```
 ## Limitations
-This script is specifically designed for Ubuntu 22.04. Running it on other operating systems may result in errors.
 The script does not handle the creation of game accounts; you will need to do this manually after the installation.
 It does not include any additional configurations for custom settings or modifications to the game.
 
