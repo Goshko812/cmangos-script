@@ -41,6 +41,11 @@ install_dependencies() {
             exit 1
             ;;
     esac
+
+    echo "Select the version to compile:"
+    echo "1) Classic (Vanilla)"
+    echo "2) The Burning Crusade (TBC)"
+    read -p "Enter your choice (1-2): " version_choice
 }
 
 create_directories() {
@@ -50,8 +55,16 @@ create_directories() {
 }
 
 clone_repositories() {
-    git clone https://github.com/cmangos/mangos-classic.git mangos
-    git clone https://github.com/cmangos/classic-db.git
+    if [[ "$version_choice" -eq 1 ]]; then
+        git clone https://github.com/cmangos/mangos-classic.git mangos
+        git clone https://github.com/cmangos/classic-db.git
+    elif [[ "$version_choice" -eq 2 ]]; then
+        git clone https://github.com/cmangos/mangos-tbc.git mangos
+        git clone https://github.com/cmangos/tbc-db.git
+    else
+        echo "Invalid version option. Please select a valid version."
+        exit 1
+    fi
 }
 
 build_project() {
