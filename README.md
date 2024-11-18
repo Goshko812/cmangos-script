@@ -5,7 +5,7 @@ This script automates the installation and configuration of CMangos with playerb
 ## What it does
 
 - **Checks for Root Privileges**: Ensures the script is not ran with root permissions.
-- **OS Verification**: Confirms that the script is being run on Ubuntu 22.04.
+- **OS Verification**: Prompts the user to select their OS.
 - **Dependency Installation**: Automatically installs all necessary packages and dependencies required for CMangos.
 - **Directory Creation**: Sets up the necessary directory structure for CMangos.
 - **Repository Cloning**: Clones the CMangos core, playerbots, and classic database repositories from GitHub.
@@ -18,7 +18,7 @@ This script automates the installation and configuration of CMangos with playerb
 
 ## Prerequisites
 
-- A clean installation of Ubuntu 22.04.
+- Ubuntu 20.04-22.04, Debian or Arch Linux.
 - Root access to the server.
 - An internet connection to download dependencies and repositories.
 - MySQL server should be installed and running.
