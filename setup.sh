@@ -7,18 +7,40 @@ check_root() {
     fi
 }
 
-check_os() {
-    if ! grep -q "Ubuntu 22.04" /etc/os-release; then
-        echo "This script is intended for Ubuntu 22.04" 1>&2
-        exit 1
-    fi
-}
-
 install_dependencies() {
-    sudo apt update
-    sudo apt install -y build-essential git-core autoconf make patch libmysql++-dev mysql-server libtool libssl-dev grep binutils zlib1g-dev libbz2-dev cmake libboost-all-dev
-    sudo apt install -y g++-12
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 12 --slave /usr/bin/g++ g++ /usr/bin/g++-12
+    echo "Select your operating system:"
+    echo "1) Ubuntu 22.04"
+    echo "2) Ubuntu 20.04"
+    echo "3) Debian"
+    echo "4) Arch Linux"
+    read -p "Enter your choice (1-4): " os_choice
+
+    case $os_choice in
+        1)
+            echo "Installing dependencies for Ubuntu 22.04..."
+            sudo apt update
+            sudo apt install -y build-essential git-core autoconf make patch libmysql++-dev mysql-server libtool libssl-dev grep binutils zlib1g-dev libbz2-dev cmake libboost-all-dev g++-12
+            sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 12 --slave /usr/bin/g++ g++ /usr/bin/g++-12
+            ;;
+        2)
+            echo "Installing dependencies for Ubuntu 20.04..."
+            sudo apt update
+            sudo apt install -y build-essential gcc g++ automake git-core autoconf make patch libmysql++-dev mysql-server libtool libssl-dev grep binutils zlibc libbz2-dev cmake libboost-all-dev
+            ;;
+        3)
+            echo "Installing dependencies for Debian..."
+            sudo apt update
+            sudo apt install -y grep build-essential gcc g++ automake git-core autoconf make patch cmake libmariadb-dev libmariadb-dev-compat mariadb-server libtool libssl-dev binutils zlibc libc6 libbz2-dev subversion libboost-all-dev
+            ;;
+        4)
+            echo "Installing dependencies for Arch Linux..."
+            sudo pacman -Syu --noconfirm base-devel git cmake mariadb mariadb-libs boost boost-libs
+            ;;
+        *)
+            echo "Invalid option. Please select a valid operating system."
+            exit 1
+            ;;
+    esac
 }
 
 create_directories() {
@@ -135,7 +157,6 @@ extract_game_data() {
 
 main() {
     check_root
-    check_os
     install_dependencies
     create_directories
     clone_repositories
