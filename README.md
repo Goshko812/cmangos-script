@@ -40,9 +40,12 @@ This script automates the installation and configuration of CMangos with playerb
 After running the script, you will need to modify the `mangosd.conf` file to disable the console for the systemd service to function correctly. Look for the line `Console.Enable` and change its value to `0`.
 You can enable the services using the following commands after modifying the configuration:
    ```bash
-   sudo systemctl enable realmd
-   sudo systemctl enable mangosd
+   sudo systemctl enable realmd.service
+   sudo systemctl enable mangosd.service
+   sudo systemctl enable mangosd.timer
    ```
+You can see domain guide [here](https://github.com/Goshko812/cmangos-script/blob/main/domain.md)
+and if you want to monitor your server you can see the guide [here](https://github.com/Goshko812/cmangos-script/blob/main/monitoring.md)
 ## Limitations
 The script does not handle the creation of game accounts; you will need to do this manually after the installation.
 It does not include any additional configurations for custom settings or modifications to the game.
