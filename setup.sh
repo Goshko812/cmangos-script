@@ -132,18 +132,17 @@ Restart=always
 [Install]
 WantedBy=multi-user.target" | sudo tee /etc/systemd/system/mangosd.service
 
-   echo "[Unit]
-Description=Restart Mangosd every 5 hours
-
-[Timer]
-OnBootSec=5h
-OnUnitActiveSec=5h
-
-[Install]
-WantedBy=timers.target" | sudo tee /etc/systemd/system/mangosd.timer
-
    sudo systemctl daemon-reload
    
+}
+
+setup_cron_job() {
+    echo "Adding cron job to restart mangosd every 5 hours..."
+    # Create a cron job file in /etc/cron.d
+    echo "0 */5 * * * root systemctl stop mangosd && systemctl start mangosd" | sudo tee /etc/cron.d/mangosd-restart > /dev/null
+    # Set appropriate permissions
+    sudo chmod 644 /etc/cron.d/mangosd-restart
+    echo "Cron job added to restart mangosd every 5 hours."
 }
 
 extract_game_data() {
@@ -195,12 +194,14 @@ main() {
     install_databases
     change_realmlist_ip
     setup_systemd_services
+    setup_cron_job
     extract_game_data
 
     echo "CMangos setup completed successfully!
     Please remember to change Console.Enable line in your mangosd.conf file after creating an account to ensure the systemd service works properly:
     This setting must be updated to 0 to disable the console for the service to function correctly. Until then, you can keep the console enabled for account creation.
-    After Console.Enable is set to 0 you can do systemctl enable realmd and systemctl enable mangosd and optionally enable and start the mangosd.timer which will restart the game world every 5 hours"
+    After Console.Enable is set to 0 you can do systemctl enable realmd and systemctl enable mangosd.
+    A cron job has been added to restart the mangosd service every 5 hours."
 }
 
 main "$@"
