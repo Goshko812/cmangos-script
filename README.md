@@ -42,7 +42,6 @@ You can enable the services using the following commands after modifying the con
    ```bash
    sudo systemctl enable realmd.service
    sudo systemctl enable mangosd.service
-   sudo systemctl enable mangosd.timer
    ```
 You can see domain guide [here](https://github.com/Goshko812/cmangos-script/blob/main/domain.md)
 and if you want to monitor your server you can see the guide [here](https://github.com/Goshko812/cmangos-script/blob/main/monitoring.md)
@@ -60,5 +59,3 @@ It does not include any additional configurations for custom settings or modific
 [CMangos](https://github.com/cmangos) for their open-source project.
 
 [CMake](https://cmake.org/) for the build system.
-
-Feel free to modify any sections to better suit your project
